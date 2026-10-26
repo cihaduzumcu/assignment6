@@ -25,10 +25,23 @@ function App() {
     return () => controller.abort();
   }, []);
 
+  const { posts, loading, error } = state;
+
+  let content;
+  if (loading) {
+    content = <p>Loading posts...</p>;
+  } else if (error) {
+    content = <p role="alert">Error: {error}</p>;
+  } else if (posts.length === 0) {
+    content = <p>No posts found.</p>;
+  } else {
+    content = <PostList posts={posts} />;
+  }
+
   return (
     <div>
       <h1>Post Dashboard</h1>
-      <PostList posts={state.posts} />
+      {content}
     </div>
   );
 }
