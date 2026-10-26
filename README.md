@@ -1,16 +1,16 @@
-# React + Vite
+File Organization:
+- postApi.js: data-fetching logic only, no React
+- Post.jsx: renders title and body
+- PostList.jsx: renders the list with .map() and stable keys
+- FilterForm.jsx: controlled input for filtering by title
+- postsReducer.js: initial state + pure reducer
+- App.jsx: owns state, runs the fetch effect, derives filtered posts
+- main.jsx: entry point
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Challenges:
+- My Node version was slightly older than what the latest
+Vite required, and my first scaffold used the wrong template (Vanilla/TypeScript
+instead of React/JavaScript). I updated Node and recreated the project.
+- StrictMode runs effects twice. I used an
+AbortController to cancel the request in the cleanup function and ignore
+the resulting AbortError.
